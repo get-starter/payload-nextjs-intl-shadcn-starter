@@ -1,0 +1,66 @@
+# Node / Package
+# =====================
+**/node_modules/
+pnpm-lock.yaml
+package-lock.json
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+/.idea/*
+
+# Environment / Secrets
+# =====================
+.env
+.env.local
+.env.*.local
+.env.dev
+.env.development
+.env.prod
+.env.production
+*.pem
+.vscode/sftp.json
+
+# Build / Output
+# =====================
+.next/
+out/
+.out/
+output/
+.output/
+build/
+dist/
+.dist/
+.vercel/
+prisma/generated/
+generated/
+.generated/
+.react-email/
+
+# Logs / Debug
+# =====================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS / Editor
+# =====================
+.DS_Store
+
+# TypeScript / Next.js
+# =====================
+*.tsbuildinfo
+# next-env.d.ts
+
+# Files
+# =====================
+media/
+
+# Custom / Project Notes
+# =====================
+.keep/
+*.ignore.md
