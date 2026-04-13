@@ -1,9 +1,8 @@
-// app.provider.tsx
 'use client'
 
 import { createContext, useContext, useEffect, useRef } from 'react'
 import { useStore } from 'zustand'
-import { createAppStore, AppState } from '@/stores/app.store'
+import { createAppStore, AppState } from '@/features/app/app.store'
 import type { StoreApi } from 'zustand'
 import { usePathname, useRouter } from 'next/navigation'
 

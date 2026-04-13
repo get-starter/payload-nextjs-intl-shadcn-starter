@@ -1,6 +1,7 @@
 'use client'
+
 import { useRef } from 'react'
-import { useAppStore } from './app.provider'
+import { useAppStore } from '@/features/app/app.provider'
 
 export function CollInitializer({ currentDocs }: { currentDocs: any }) {
   const initialized = useRef(false)

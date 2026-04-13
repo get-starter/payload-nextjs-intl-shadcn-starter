@@ -5,13 +5,11 @@ import { Inter } from 'next/font/google'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { getPayloadClient } from '@/payload/payload'
-import { AppProvider } from '@/app/app.provider'
+import { AppProvider } from '@/features/app/app.provider'
 import { setRequestLocale } from 'next-intl/server'
+import { ThemeProvider } from 'next-themes'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 type Props = {
   children: React.ReactNode
@@ -22,12 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const payload = await getPayloadClient()
 
-  // Sadece gerekli olan globali çekiyoruz
-  const settings = await payload.findGlobal({
-    slug: 'settings',
-    locale: locale as any,
-    depth: 1,
-  })
+  const settings = await payload.findGlobal({ slug: 'settings', locale: locale as any, depth: 1 })
 
   const title = settings.meta?.title || 'Default Title'
   const slogan = settings.meta?.slogan || ''
@@ -51,7 +44,6 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
-
   setRequestLocale(locale)
 
   const payload = await getPayloadClient()
@@ -67,7 +59,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} antialiased`}>
       <body className="antialiased">
         <NextIntlClientProvider locale={locale}>
-          <AppProvider initialState={initialState}>{children}</AppProvider>
+          <AppProvider initialState={initialState}>
+            <ThemeProvider attribute={'class'}>{children}</ThemeProvider>
+          </AppProvider>
         </NextIntlClientProvider>
       </body>
     </html>

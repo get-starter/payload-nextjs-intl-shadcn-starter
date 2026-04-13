@@ -1,3 +1,7 @@
+/**
+ * Global
+ * Server functions
+ */
 'use server'
 
 import { FindOptions, getPayload } from 'payload'
