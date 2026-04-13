@@ -27,9 +27,7 @@ export default buildConfig({
   ],
   admin: {
     user: UsersCollection.slug,
-    importMap: {
-      baseDir: path.resolve(dirname),
-    },
+    importMap: { baseDir: path.resolve(dirname) },
     components: {},
   },
   collections: Collections,
@@ -40,18 +38,11 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URL || '',
-    },
+    pool: { connectionString: process.env.DATABASE_URL || '' },
   }),
   sharp,
   jobs: {
-    autoRun: [
-      {
-        cron: '*/5 * * * *', // Check every 5 minutes
-        allQueues: true,
-      },
-    ],
+    autoRun: [{ cron: '*/5 * * * *', allQueues: true }],
   },
 
   plugins: [
@@ -61,10 +52,11 @@ export default buildConfig({
   ],
   i18n: {
     translations: customTranslations,
-    fallbackLanguage: 'de',
     supportedLanguages: { en, es },
+    fallbackLanguage: 'en',
   },
   localization: {
+    defaultLocale: 'en',
     locales: [
       {
         label: { en: 'English', es: 'Inglés' },
@@ -75,6 +67,5 @@ export default buildConfig({
         code: 'es',
       },
     ],
-    defaultLocale: 'en',
   },
 })
